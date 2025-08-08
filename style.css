@@ -1,0 +1,241 @@
+:root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --accent: #3b82f6;
+            --text: #1f2937;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --cell-size: 100px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .mode-selector {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::after {
+            left: 100%;
+        }
+
+        .game-container {
+            display: none;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .game-info {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+        }
+
+        .current-player {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .reset-btn {
+            background-color: var(--danger);
+        }
+
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 0 auto;
+            width: calc(var(--cell-size) * 3 + 20px);
+        }
+
+        .cell {
+            width: var(--cell-size);
+            height: var(--cell-size);
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .cell:hover {
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+
+        .cell.x {
+            color: var(--primary);
+        }
+
+        .cell.o {
+            color: var(--secondary);
+        }
+
+        .player-panel {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .player {
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .player.active {
+            background-color: rgba(59, 130, 246, 0.1);
+            border: 2px solid var(--primary);
+        }
+
+        .winner-display {
+            display: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .winner-x {
+            color: var(--primary);
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+
+        .winner-o {
+            color: var(--secondary);
+            background-color: rgba(30, 64, 175, 0.1);
+        }
+
+        .winner-draw {
+            color: var(--dark);
+        }
+
+        .back-btn {
+            background-color: var(--dark);
+            margin-top: 10px;
+        }
+
+        @media (max-width: 500px) {
+            :root {
+                --cell-size: 80px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .cell {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Animation classes */
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .pop-in {
+            animation: popIn 0.3s ease forwards;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(2deg); }
+            75% { transform: rotate(-2deg); }
+        }
+
+        .wiggle:hover {
+            animation: wiggle 0.5s ease infinite;
+        }
